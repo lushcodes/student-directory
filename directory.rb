@@ -13,11 +13,23 @@ students = [
   "Norman Bates",
   ]
 
-# print the array of student names by iterating over each value in the array
-puts "The students of Villains Academy"
-puts "-------------"
-students.each do  | student |
-  puts student
+
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
+end
+
+def print(names)
+names.each do  | name |
+  puts name
   end
-#finally, we print the total number of students
-puts "Overall, we have #{students.count} great students"
+end
+
+def print_footer(names)
+puts "Overall, we have #{names.count} great students"
+end
+
+
+print_header
+print(students)
+print_footer(students)
