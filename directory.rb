@@ -1,3 +1,14 @@
+def random_country
+  countries = [
+  "England", "France", "Germany", "Canada", "Austalia",
+  "United States", "Ukraine", "Netherlands", "Spain",
+  "Japan", "China"]
+  
+  countries[rand(11)]
+end
+  
+
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -8,7 +19,7 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: :november, country: random_country}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
@@ -26,7 +37,7 @@ end
 def print(students)
   counter = 0
   until counter == students.length
-  puts "#{students[counter][:name]} (#{students[counter][:cohort]} cohort)"
+  puts "#{students[counter][:name]} (#{students[counter][:cohort]} Cohort) (Country: #{students[counter][:country]})"
   counter += 1
   end
 end
