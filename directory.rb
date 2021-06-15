@@ -24,8 +24,10 @@ def print_header
 end
 
 def print(students)
-students.each do  | student |
-  puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  students.each.with_index(1) do | student, rank |
+    if !"#{student[:name]}".start_with? 'S'
+      puts "#{rank}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
