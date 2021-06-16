@@ -15,9 +15,9 @@ def input_students
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
-  # get the first name
+  # get the first person's name
   name = gets.chomp
-  # get that persons cohort
+  # get that person's cohort
   cohort = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
@@ -29,7 +29,7 @@ def input_students
     else
       puts "Now we have #{students.count} students"
     end
-    # get another name from the user
+    # get another person's name & their cohort from the user
     name = gets.chomp
     cohort = gets.chomp
   end
@@ -52,7 +52,7 @@ def print(students)
   end
 end
   
-#footer with conditional added for plural/non-plural output
+#footer with conditional for plural/non-plural output
 def print_footer(names)
   if names.length < 2
     puts "Overall, we have #{names.count} great student"
