@@ -3,7 +3,7 @@
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -15,7 +15,7 @@ def print_menu
   puts "9. Exit"
 end
 
-
+# methods run based on user input selection
 def process(selection)
   case selection
     when "1"
@@ -27,7 +27,7 @@ def process(selection)
     when "4"
       load_students
     when "9"
-      exit # this will cause the program to terminate
+      exit
     else
       puts "I don't know what you meant, try again"
   end
@@ -38,9 +38,9 @@ def input_students
   puts "Please enter the names of the students and their cohort"
   puts "To finish, just hit return twice"
   # get the first person's name
-  name = gets.chomp
+  name = STDIN.gets.chomp
   # get that person's cohort
-  cohort = gets.chomp
+  cohort = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student's name, chort and random country to the array as a hash
@@ -52,8 +52,8 @@ def input_students
       puts "Now we have #{@students.count} students"
     end
     # get another person's name & their cohort from the user
-    name = gets.chomp
-    cohort = gets.chomp
+    name = STDIN.gets.chomp
+    cohort = STDINgets.chomp
   end
   # return the updated array of students
   @students
@@ -78,9 +78,9 @@ def save_students
   file.close
 end
 
-def load_students
+def load_students(filename = "students.csv")
   # open the file for reading
-  file = File.open("students.csv", "r")
+  file = File.open(filename, "r")
   # iterate over the array of students and read csv file
   file.readlines.each do | line |
     name, cohort, country = line.chomp.split(", ")
@@ -90,7 +90,17 @@ def load_students
   file.close
 end
 
-
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.count} from #{filename}"
+  else
+    puts "Sorry, #{filename} doesn't exist."
+    exit
+  end
+end
 
 
 
@@ -132,4 +142,5 @@ def print_footer
   end
 end
 
+try_load_students
 interactive_menu
