@@ -57,7 +57,7 @@ def input_students
     end
     # get another person's name & their cohort from the user
     name = STDIN.gets.chomp
-    cohort = STDINgets.chomp
+    cohort = STDIN.gets.chomp
   end
   # return the updated array of students
   @students
