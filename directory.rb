@@ -19,12 +19,16 @@ end
 def process(selection)
   case selection
     when "1"
+      puts "Option 1 selected."
      input_students
     when "2"
+      puts "Option 2 selected."
       show_students
     when "3"
+      puts "Option 3 selected."
       save_students
     when "4"
+      puts "Option 4 selected"
       load_students
     when "9"
       exit
@@ -35,7 +39,7 @@ end
 
 # asks the user to enter a students name and cohort
 def input_students
-  puts "Please enter the names of the students and their cohort"
+  puts "Please enter the names of the student, followed by their cohort"
   puts "To finish, just hit return twice"
   # get the first person's name
   name = STDIN.gets.chomp
@@ -75,6 +79,7 @@ def save_students
     csv_line = student_data.join(", ")
     file.puts csv_line
   end
+  puts "Saved changes to student directory"
   file.close
 end
 
@@ -87,6 +92,7 @@ def load_students(filename = "students.csv")
     # store data in students array
     @students << {name: name, cohort: cohort.to_sym, country: country.to_sym}
   end
+  puts "Loaded student directory"
   file.close
 end
 
