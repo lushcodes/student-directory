@@ -1,3 +1,4 @@
+# method that generates one random country from an array of countries 
 def random_country
   countries = [
   "England", "France", "Germany", "Canada", "Austalia",
@@ -8,21 +9,29 @@ def random_country
 end
   
 
-
+# asks the user to enter a students name and cohort
 def input_students
-  puts "Please enter the names of the students"
+  puts "Please enter the names of the students and their cohort"
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
   # get the first name
   name = gets.chomp
+  # get that persons cohort
+  cohort = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    # add the student hash to the array
-    students << {name: name, cohort: :november, country: random_country}
-    puts "Now we have #{students.count} students"
+    # add the student's name, chort and random country to the array as a hash
+    students << {name: name, cohort: cohort, country: random_country}
+    # if there is only 1 student, handle output to reflect the correct plural cases
+    if students.length  < 2
+      puts "Now we have #{students.count} student"
+    else
+      puts "Now we have #{students.count} students"
+    end
     # get another name from the user
     name = gets.chomp
+    cohort = gets.chomp
   end
   # return the array of students
   students
@@ -34,17 +43,22 @@ def print_header
   puts "-------------"
 end
 
+# print each hash value in the students array
 def print(students)
   counter = 0
   until counter == students.length
-  puts "#{students[counter][:name]} (#{students[counter][:cohort]} Cohort) (Country: #{students[counter][:country]})"
-  counter += 1
+    puts "#{students[counter][:name]} (#{students[counter][:cohort]} Cohort) (Country: #{students[counter][:country]})"
+    counter += 1
   end
 end
   
-
+#footer with conditional added for plural/non-plural output
 def print_footer(names)
-puts "Overall, we have #{names.count} great students"
+  if names.length < 2
+    puts "Overall, we have #{names.count} great student"
+  else
+    puts "Overall, we have #{names.count} great students"
+  end
 end
 
 students = input_students
